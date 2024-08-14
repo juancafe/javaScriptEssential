@@ -7,6 +7,10 @@ let userMessage;
 let userType = "subscriber";
 let userCategory;
 
+// Step 5: Use ternary operator for isAuthenticated and authenticationStatus
+let isAuthenticated = true;
+let authenticationStatus = isAuthenticated ? "Authenticated" : "Not authenticated";
+
 
 if (userRole === "admin") {
     accessLevel = "Full access granted";
@@ -44,3 +48,4 @@ switch (userType) {
 }
 console.log("User Category:", userCategory);
 
+console.log("Authentication Status:", authenticationStatus);
