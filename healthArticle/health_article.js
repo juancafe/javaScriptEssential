@@ -1,11 +1,13 @@
 // Creating the XMLHTML Request Object 
 var xhr = new XMLHttpRequest();
 
-var url = './health.json';
+var url = './health_article.json';
 
 // Define the Request
-xhr.open('GET', url, true);
+// xhr.open('GET', url, true);
+xhr.open('GET', './health_article.json' , true);
 
+//  you need to inform the XMLHttpRequest object that the expected response from the server should be in JSON format.
 xhr.responseType = 'json';
 
 // Handle the Response
@@ -14,6 +16,17 @@ xhr.onload = function() {
 var articles = xhr.response.articles;
 var articlesDiv = document.getElementById('articles');
 
+    console.log(xhr.status)
+    if (xhr.status>=200 && xhr.status< 400){
+        // Proceso Articulos
+        console.log('Proceso los articulos en el archivo JSON')
+    } else {
+        console.error('Error fetching Data');
+    }
+// Handling Network Errors
+xhr.onerror=function () {
+    console.error('Network error');
+}
   articles.forEach(function(article) {
       var articleDiv = document.createElement('div');
       articleDiv.classList.add('article');
@@ -52,9 +65,13 @@ var articlesDiv = document.getElementById('articles');
       articleDiv.appendChild(benefitsList);
 
       articlesDiv.appendChild(articleDiv);
+ 
     });
-    // Send the Request
-    xhr.send();
+
+
+
+ 
 }
 
-
+        // Send the Request
+        xhr.send();
